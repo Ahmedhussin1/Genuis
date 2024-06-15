@@ -39,7 +39,7 @@ function SongSearch() {
       <div className="grid grid-cols-3 py-10 gap-5">
         {result.map((song, index) => (
           <div className="flex flex-col items-center gap-5" key={index}>
-            <a href="song.result.url">
+            <a href={song.result.url}>
               <img src={song.result.song_art_image_thumbnail_url} />
             </a>
             <h1 className="text-xl">
