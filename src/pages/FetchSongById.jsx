@@ -26,7 +26,7 @@ function FetchSongById() {
       ) : song ? (
         <p>{song.full_title}</p>
       ) : (
-        <p>No song Loaded</p>
+        <p>Click Randomize to Get The Song</p>
       )}
     </div>
   );

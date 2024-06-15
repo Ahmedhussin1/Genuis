@@ -22,7 +22,10 @@ function SongSearch() {
   return (
     <div>
       <h1>Search a Song Now</h1>
-      <form className="flex justify-center items-center gap-5 pt-10" onSubmit={handleSubmit}>
+      <form
+        className="flex justify-center items-center gap-5 pt-10"
+        onSubmit={handleSubmit}
+      >
         <input
           type="text"
           value={query}
@@ -32,13 +35,17 @@ function SongSearch() {
         />
         <button type="submit">Search</button>
       </form>
-      {loading && <p>Loading...</p> }
+      {loading && <p>Loading...</p>}
       <div className="grid grid-cols-3 py-10 gap-5">
         {result.map((song, index) => (
           <div className="flex flex-col items-center gap-5" key={index}>
-            <img src={song.result.song_art_image_thumbnail_url} />
+            <a href="song.result.url">
+              <img src={song.result.song_art_image_thumbnail_url} />
+            </a>
             <h1 className="text-xl">
-              <a className="text-white" href={song.result.url}>{song.result.full_title}</a>
+              <a className="text-white" href={song.result.url}>
+                {song.result.full_title}
+              </a>
             </h1>
             <p>{song.result.release_date_for_display}</p>
           </div>
