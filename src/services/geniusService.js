@@ -30,9 +30,7 @@ export const searchSong =async (title) => {
 
 export const randomSong = async (id) =>{
   try{
-    const response = await geniusApi.get('/song',{
-      params:{id:id}
-    })
+    const response = await geniusApi.get(`/songs/${id}`)
     return response.data.response.song
   }catch(error){
     console.error('Error Fetching Song Data From Genius API', error)
