@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { searchSong } from "../services/geniusService";
 import LoadingAnimation from "./LoadingAnimation";
+import SongCard from "./SongCard";
 
 function SongSearch() {
     const [query, setQuery] = useState('')
@@ -43,15 +44,14 @@ function SongSearch() {
         ) : (
           result.map((song, index) => (
             <div className="flex flex-col items-center gap-5" key={index}>
-              <a href={song.result.url}>
-                <img src={song.result.song_art_image_thumbnail_url} />
-              </a>
-              <h1 className="text-xl">
-                <a className="text-white" href={song.result.url}>
-                  {song.result.full_title}
-                </a>
-              </h1>
-              <p>{song.result.release_date_for_display}</p>
+              <SongCard
+                appleUrl={song.result.url}
+                artistLink={song.result.url}
+                artistName={song.result.artist_names}
+                genuisLink={song.result.url}
+                imgUrl={song.result.header_image_thumbnail_url}
+                songName={song.result.full_title}
+              />
             </div>
           ))
         )}
