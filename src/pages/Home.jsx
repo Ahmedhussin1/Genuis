@@ -1,7 +1,10 @@
+import SongCard from "../components/SongCard"
 
 function Home() {
   return (
-    <div>Home</div>
+    <div>
+        <SongCard/>
+    </div>
   )
 }
 
