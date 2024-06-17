@@ -5,7 +5,6 @@ import { FaSpotify } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 
 
-
 function SongCard({
   imgUrl,
   songName,

@@ -19,6 +19,16 @@ function FetchSongById() {
       setLoading(false);
     }
   };
+
+  const extractUrls = (mediaArray, provider) =>{
+    const mediaItem = mediaArray ? mediaArray.find(media => media.provider === provider) : null;
+    return mediaItem ? mediaItem.url : null ; 
+  }
+
+  const spotifyUrl = song ? extractUrls(song.media, "spotify"): null
+  const youtubeUrl = song ? extractUrls(song.media, "youtube"): null
+  console.log("ss", song.url)
+  console.log('spotifyUrl', spotifyUrl)
   return (
     <div>
       <h1> randomize a song </h1>
@@ -34,7 +44,10 @@ function FetchSongById() {
             artistName={song.primary_artist.name} 
             genuisLink={song.url} 
             imgUrl={song.song_art_image_thumbnail_url} 
-            songName={song.full_title}/>
+            songName={song.full_title}
+            spotifyUrl={spotifyUrl}
+            youtubeUrl={youtubeUrl}
+            />
         </div>
       ) : (
         <p>Click Randomize to Get The Song</p>
