@@ -1,20 +1,30 @@
 import { useState } from "react";
 import LoadingAnimation from "../components/LoadingAnimation";
 import { searchSpotify } from "../services/spotifyService";
+import AlbumCard from "../components/AlbumCard";
+import ArtistCard from "../components/ArtistCard";
+import TrackCard from "../components/TrackCard";
 
 function Spotify() {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
-  const [type, setType] = useState("album,artist,track");
+  const [type, setType] = useState("album");
   const [results, setResults] = useState([]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-        // todo: add conditions for different types like : artist, tracks, playlists
-      const data = await searchSpotify(query,type);
-      setResults(data[`${type}s`].items || []);
+      // todo: add conditions for different types like : artist, tracks, playlists
+      const data = await searchSpotify(query, type);
+      if (type === "artist") {
+        setResults(data.artists.items);
+      } else if (type === "track") {
+        setResults(data.tracks.items);
+      } else if (type === "album") {
+        setResults(data.albums.items);
+      }
+      return null;
     } catch (error) {
       console.error("Error fetching search result", error);
     } finally {
@@ -32,11 +42,11 @@ function Spotify() {
           placeholder="search for an album, artist, or track"
           className="py-2 px-3 rounded"
         />
-        
+
         <select value={type} onChange={(e) => setType(e.target.value)}>
-            <option value="album">Album</option>
-            <option value="artist">Artist</option>
-            <option value="track">Track</option>  
+          <option value="album">Album</option>
+          <option value="artist">Artist</option>
+          <option value="track">Track</option>
         </select>
 
         <button type="submit">Search</button>
@@ -46,16 +56,34 @@ function Spotify() {
           </div>
         ) : (
           <div>
-            {results.map((result, index) => (
-              <div className="border-gray rounded p-10" key={index}>
-                <img src={result.images[1].url} alt={result.name} />
-                <h1>
-                  <a target="_blank" href={result.external_urls.spotify}>
-                    {result.name}
-                  </a>
-                </h1>
-              </div>
-            ))}
+            {results.map((result) => {
+              if (type === "album") {
+                return (
+                  <AlbumCard
+                    albumName={result.name}
+                    albumUrl={result.images[1].url}
+                    key={result.id}
+                  />
+                );
+              } else if (type === "artist") {
+                return (
+                  <ArtistCard
+                    artistNameUrl={result.name}
+                    artistImgUrl={result.images[1]?.url}
+                    key={result.id}
+                  />
+                );
+              } else if (type === "track") {
+                return (
+                  <TrackCard
+                    trackName={result.name}
+                    trackImgUrl={result.album.images[1]?.url}
+                    key={result.id}
+                  />
+                );
+              }
+              return null;
+            })}
           </div>
         )}
       </form>

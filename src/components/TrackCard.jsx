@@ -1,9 +1,16 @@
 import React from 'react'
 
-function TrackCard() {
+function TrackCard({ trackImgUrl, trackName }) {
   return (
-    <div>TrackCard</div>
-  )
+    <div>
+      <div>
+        <img src={trackImgUrl} />
+      </div>
+      <div>
+        <h1>{trackName}</h1>
+      </div>
+    </div>
+  );
 }
 
 export default TrackCard

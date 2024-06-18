@@ -1,9 +1,16 @@
 import React from 'react'
 
-function ArtistCard() {
+function ArtistCard({ artistImgUrl, artistNameUrl }) {
   return (
-    <div>ArtistCard</div>
-  )
+    <div>
+      <div>
+        <img src={artistImgUrl} />
+      </div>
+      <div>
+        <h1>{artistNameUrl}</h1>
+      </div>
+    </div>
+  );
 }
 
 export default ArtistCard
