@@ -21,20 +21,24 @@ const getAccessToken = async () => {
 
 // function to search for items 
 
-export const searchSpotify = async (query, type='album,artist,track', limit=10, market='US') =>{
-
-    const token = await getAccessToken();
-    const response = await axios.get("https://api.spotify.com/v1/search",{
-        headers:{
-            Authorization: `Bearer ${token}`
-        },
-        params:{
-            q:query,
-            type:type,
-            limit:limit,
-            market:market
-        }
-    });
-    return response.data
-}
+export const searchSpotify = async (
+  query,
+  type ,
+  limit = 20,
+  market = "US"
+) => {
+  const token = await getAccessToken();
+  const response = await axios.get("https://api.spotify.com/v1/search", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    params: {
+      q: query,
+      type: type,
+      limit: limit,
+      market: market,
+    },
+  });
+  return response.data;
+};
 
