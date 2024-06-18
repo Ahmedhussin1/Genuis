@@ -11,6 +11,8 @@ function Spotify() {
   const [type, setType] = useState("album");
   const [results, setResults] = useState([]);
 
+  const defaultImage = '../../public/notFound.jpg'
+
   const handleSearch = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -32,7 +34,7 @@ function Spotify() {
     }
   };
   return (
-    <div>
+    <div className="">
       <h1>Spotify search</h1>
       <form className="space-x-5" onSubmit={handleSearch}>
         <input
@@ -50,42 +52,50 @@ function Spotify() {
         </select>
 
         <button type="submit">Search</button>
-        {loading ? (
-          <div>
-            <LoadingAnimation />
-          </div>
-        ) : (
-          <div>
-            {results.map((result) => {
+        <div className="grid grid-cols-3 py-10 gap-10">
+          {loading ? (
+            <div className="col-span-3 flex justify-center items-center mt-10">
+              <LoadingAnimation />
+            </div>
+          ) : (
+            results.map((result) => {
               if (type === "album") {
                 return (
                   <AlbumCard
                     albumName={result.name}
-                    albumUrl={result.images[1].url}
+                    albumUrl={result.images[1]?.url}
                     key={result.id}
                   />
                 );
               } else if (type === "artist") {
                 return (
-                  <ArtistCard
-                    artistNameUrl={result.name}
-                    artistImgUrl={result.images[1]?.url}
+                  <div
                     key={result.id}
-                  />
+                    className="flex flex-col items-center gap-5"
+                  >
+                    <ArtistCard
+                      artistName={result.name}
+                      artistImgUrl={result.images[1]?.url || defaultImage}
+                      artistGenre={result.genres}
+                      artistSpotifyUrl={result.external_urls.spotify}
+                      artistTotalFollowers={result.followers.total}
+                      artistUrl={result.external_urls.spotify}
+                    />
+                  </div>
                 );
               } else if (type === "track") {
                 return (
                   <TrackCard
                     trackName={result.name}
-                    trackImgUrl={result.album.images[1]?.url}
+                    trackImgUrl={result.album?.images[1]?.url}
                     key={result.id}
                   />
                 );
               }
               return null;
-            })}
-          </div>
-        )}
+            })
+          )}
+        </div>
       </form>
     </div>
   );
