@@ -29,6 +29,13 @@ function Navbar() {
         >
           <Link to="/search">Search</Link>
         </li>
+        <li
+          className={`text-xl font-bold ${
+            location.pathname === "/spotify" ? "text-[#ff3533]" : "text-[#ffffff]"
+          }`}
+        >
+          <Link to="/spotify">Spotify</Link>
+        </li>
       </ul>
     </nav>
   );

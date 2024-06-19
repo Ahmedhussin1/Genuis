@@ -8,6 +8,19 @@ function ArtistCard({
   artistSpotifyUrl,
   artistUrl,
 }) {
+    // function to formate the artist follower number 
+    function formatFollowersCount(number) {
+      if (number >= 1e9) {
+        return (number / 1e9).toFixed(1) + "B";
+      } else if (number >= 1e6) {
+        return (number / 1e6).toFixed(1) + "M";
+      } else if (number >= 1e3) {
+        return (number / 1e3).toFixed(1) + "K";
+      } else {
+        return number.toString();
+      }
+    }
+    const followers = formatFollowersCount(artistTotalFollowers)
   return (
     <div className="p-5 bg-[#1a1a1a] w-fit space-y-5 rounded">
       <div className="flex items-center justify-center">
@@ -24,9 +37,11 @@ function ArtistCard({
       {/* artist name container */}
       <div className="flex flex-col space-y-5 justify-between">
         <div className="flex items-center space-x-2">
-        {/* followers number */}
+          {/* followers number */}
           <div className="flex ">
-            <span className="text-[#a6a6a6]">Total Followers: {artistTotalFollowers}</span>
+            <span className="text-[#a6a6a6]">
+              Total Followers: {followers}
+            </span>
           </div>
           <div className="w-1 h-1 rounded-full bg-[#a6a6a6] mt-1" />
           {/* artist name */}
