@@ -4,6 +4,7 @@ import { searchSpotify } from "../services/spotifyService";
 import AlbumCard from "../components/AlbumCard";
 import ArtistCard from "../components/ArtistCard";
 import TrackCard from "../components/TrackCard";
+import FullLoadingAnimation from "../components/FullLoadingAnimation";
 
 function Spotify() {
   const [query, setQuery] = useState("");
@@ -11,7 +12,7 @@ function Spotify() {
   const [type, setType] = useState("album");
   const [results, setResults] = useState([]);
 
-  const defaultImage = '../../public/notFound.jpg'
+  const defaultImage = "../../public/notFound.jpg";
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -55,6 +56,7 @@ function Spotify() {
         <div className="grid grid-cols-3 py-10 gap-10">
           {loading ? (
             <div className="col-span-3 flex justify-center items-center mt-10">
+              {/* <FullLoadingAnimation backgroundColor='white' height='450' imgUrl='../../public/Because we are disturbed that the art of the mixtape has in fact been lost on a generation_.gif' /> */}
               <LoadingAnimation />
             </div>
           ) : (
@@ -88,6 +90,20 @@ function Spotify() {
                   <TrackCard
                     trackName={result.name}
                     trackImgUrl={result.album?.images[1]?.url}
+                    albumName={result.album?.name}
+                    artistsName={result.artists?.map((artist, index) => {
+                      return (
+                        <div className="flex" key={index}>
+                          <p>
+                            {artist.name}
+                            {index < result.artists.length - 1 && ','}
+                          </p>
+
+                        </div>
+                      );
+                    })}
+                    trackLink={result.external_urls.spotify}
+                    albumLink={result.album?.external_urls.spotify}
                     key={result.id}
                   />
                 );
