@@ -35,7 +35,7 @@ function Spotify() {
     }
   };
   return (
-    <div className="">
+<div className="">
       <h1>Spotify search</h1>
       <form className="space-x-5" onSubmit={handleSearch}>
         <input
@@ -102,7 +102,7 @@ function Spotify() {
                         </div>
                       );
                     })}
-                    trackLink={result.external_urls.spotify}
+                    trackLink={result.id}
                     albumLink={result.album?.external_urls.spotify}
                     key={result.id}
                   />

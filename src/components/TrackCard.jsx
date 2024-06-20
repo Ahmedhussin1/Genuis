@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function TrackCard({
   trackImgUrl,
@@ -10,15 +11,19 @@ function TrackCard({
 }) {
   return (
     <div className="bg-[#1a1a1a] flex flex-col justify-center items-center py-10 rounded">
-      <div>
+      {/* track image */}
+      <div className="flex justify-center items-center">
         <a href={trackLink} target="_blank">
           <img className="rounded pb-5" src={trackImgUrl} />
         </a>
       </div>
-      <div className="flex flex-col gap-3">
+      {/* all track data container  */}
+      <div className="flex items-center flex-col gap-3">
+        {/* track name */}
         <div>
           <span className="text-2xl font-bold">{trackName}</span>
         </div>
+        {/* album name */}
         <div>
           <span className="text-[#a6a6a6]">
             <a
@@ -34,9 +39,9 @@ function TrackCard({
           {artistsName}
         </div>
         <div>
-          <a target="_blank" href={trackLink}>
-            <span>Listen</span>
-          </a>
+          <Link to={`/song/${trackLink}`}>
+            <span>More</span>
+          </Link>
         </div>
       </div>
     </div>

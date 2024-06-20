@@ -42,3 +42,19 @@ export const searchSpotify = async (
   return response.data;
 };
 
+
+// fetch single song by id 
+
+export const singleSongData = async (id,market="US") => {
+    const token = await getAccessToken();
+    const response = await axios.get("https://api.spotify.com/v1/tracks", {
+        headers:{
+            Authorization: `Bearer ${token}`,
+        },
+        params:{
+            ids:id,
+            market:market,
+        }
+    });
+    return response.data;
+}
