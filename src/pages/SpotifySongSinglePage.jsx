@@ -10,6 +10,7 @@ import Spotify from "./Spotify";
 function SpotifySongSinglePage() {
   const { id } = useParams();
   const navigate = useNavigate();
+//   Todo:try change the value of the useState to array
   const [song, setSong] = useState(null);
   const [loading, setLoading] = useState(false);
 

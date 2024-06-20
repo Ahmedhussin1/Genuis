@@ -18,7 +18,7 @@ function Spotify() {
     e.preventDefault();
     setLoading(true);
     try {
-      // todo: add conditions for different types like : artist, tracks, playlists
+        // check the type of the search
       const data = await searchSpotify(query, type);
       if (type === "artist") {
         setResults(data.artists.items);
@@ -65,7 +65,19 @@ function Spotify() {
                 return (
                   <AlbumCard
                     albumName={result.name}
-                    albumUrl={result.images[1]?.url}
+                    albumImg={result.images[1]?.url}
+                    albumUrl={result.external_urls?.spotify}
+                    artistName={result.artists?.map((artist,index)=>(
+                        <div className="" key={index}>
+                          <p className="flex">
+                            {artist.name}
+                            {index < result.artists.length - 1 && ','}
+                          </p>
+                          </div>
+                    ))}
+                    
+                    totalTracks={result.total_tracks}
+                    artistUrl={result.artists[0]?.external_urls.spotify}
                     key={result.id}
                   />
                 );
