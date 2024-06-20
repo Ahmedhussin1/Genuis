@@ -31,6 +31,7 @@ function TrackCard({
               href={albumLink}
               target="_blank"
             >
+            Album: 
               {albumName}
             </a>
           </span>

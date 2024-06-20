@@ -4,7 +4,7 @@ function Navbar() {
   const location = useLocation();
 
   return (
-    <nav className="bg-[#262626] w-[50%] rounded-full flex justify-center mx-auto border border-[#404040]">
+    <nav className="bg-[#262626] w-[70%] rounded-full flex justify-center mx-auto border border-[#404040]">
       <ul className="flex space-x-10 items-center justify-center py-5">
         <li
           className={`text-xl font-bold ${
@@ -27,14 +27,14 @@ function Navbar() {
             location.pathname === "/search" ? "text-[#ff3533]" : "text-[#ffffff]"
           }`}
         >
-          <Link to="/search">Search</Link>
+          <Link to="/search">Genius Search</Link>
         </li>
         <li
           className={`text-xl font-bold ${
             location.pathname === "/spotify" ? "text-[#ff3533]" : "text-[#ffffff]"
           }`}
         >
-          <Link to="/spotify">Spotify</Link>
+          <Link to="/spotify">Spotify Search</Link>
         </li>
       </ul>
     </nav>
