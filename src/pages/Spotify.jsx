@@ -53,6 +53,7 @@ function Spotify() {
         </select>
 
         <button type="submit">Search</button>
+        </form>
         <div className="grid grid-cols-3 py-10 gap-10">
           {loading ? (
             <div className="col-span-3 flex justify-center items-center mt-10">
@@ -124,7 +125,7 @@ function Spotify() {
             })
           )}
         </div>
-      </form>
+      
     </div>
   );
 }
