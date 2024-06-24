@@ -10,10 +10,10 @@ function SearchTrackField({ onSelectSong }) {
 
   const handleSearch = async (e) => {
     setQuery(e.target.value);
-    if (e.target.value === "") {
-      setResults([]);
-      return;
-    }
+    // if (e.target.value === "") {
+    //   setResults([]);
+    //   return;
+    // }
 
     setLoading(true);
     try {
@@ -48,7 +48,7 @@ function SearchTrackField({ onSelectSong }) {
             <li
               key={result.id}
               className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
-              onClick={() => handleSelectSong(result)}
+              onClick={() => handleSelectSong(result.name)}
             >
               {result.name} by {result.artists[0].name}
             </li>
