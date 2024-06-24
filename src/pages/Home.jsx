@@ -1,18 +1,22 @@
 import { useState } from "react"
-import Spotify from "./Spotify"
-import SearchField from "../components/SearchField"
+import SearchTrackField from "../components/SearchTrackField"
+import SearchAlbumField from "../components/SearchAlbumField"
 
 function Home() {
   const [clicked, setClicked] = useState(false)
   const [title, setTitle] = useState('')
   const [text,setText] = useState('')
   const [songName,setSongName] = useState('')
+  const [albumName,setAlbumName] = useState('')
 
   const togglePopup = () =>{
     setClicked(!clicked)
   }
  const handleSelectSong = (song) => {
     setSongName(song.name);
+  };
+ const handleSelectAlbum = (album) => {
+    setAlbumName(album.name);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -59,7 +63,8 @@ function Home() {
                   className="w-full px-3 py-2 border border-gray-300 rounded"
                   required
                 /> */}
-                <SearchField onSelectSong={handleSelectSong}/>
+                <SearchTrackField onSelectSong={handleSelectSong} />
+                {/* <SearchAlbumField onAlbumSelect={handleSelectAlbum}/> */}
               </div>
               <div className="flex justify-end space-x-4">
                 <button

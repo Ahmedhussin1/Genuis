@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { searchSpotify } from "../services/spotifyService";
+import LoadingAnimation from "./LoadingAnimation";
 
-function SearchField({ onSelectSong }) {
+function SearchTrackField({ onSelectSong }) {
     
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
@@ -40,7 +41,7 @@ function SearchField({ onSelectSong }) {
         placeholder="Search for a song"
         className="py-2 px-3 rounded w-full"
       />
-      {loading && <div>Loading...</div>}
+      {loading && <LoadingAnimation/>}
       {results.length > 0 && (
         <ul className="absolute bg-black border border-gray-300 w-full mt-1 rounded shadow-lg z-10">
           {results.map((result) => (
@@ -58,4 +59,4 @@ function SearchField({ onSelectSong }) {
   );
 }
 
-export default SearchField;
+export default SearchTrackField;
