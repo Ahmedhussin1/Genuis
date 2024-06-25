@@ -1,14 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { searchSpotify } from "../services/spotifyService";
+import LoadingAnimation from "./LoadingAnimation";
 
-function TrackCard({
-  trackImgUrl,
-  trackName,
-  albumName,
-  albumLink,
-  artistsName,
-  trackLink,
-}) {
+
+function TrackCard({ trackName }) {
+  const [trackData, setTrackData] = useState(null)
+
+  
+  useEffect(()=>{
+    const fetchTrackData = async() => {
+      try{
+        const data = await searchSpotify(trackName,'track')
+        if(data.tracks.items.length > 0 ){
+          setTrackData(data.tracks.items[0])
+        }
+      }catch(err){
+        console.error("error fetching track data" + err)
+      }
+    }
+    fetchTrackData()
+  },[trackName])
+
+  if(!trackData){
+    return <LoadingAnimation/>
+  }
+
+  const trackLink = trackData.external_urls?.spotify
+  const albumLink = trackData.album?.external_urls.spotify
+  const trackImgUrl = trackData.album?.images[0]?.url
+  const albumName = trackData.album.name
+
   return (
     <div className="bg-[#1a1a1a] flex flex-col justify-center items-center py-10 rounded">
       {/* track image */}
@@ -31,13 +53,18 @@ function TrackCard({
               href={albumLink}
               target="_blank"
             >
-            Album: 
+              Album:
               {albumName}
             </a>
           </span>
         </div>
         <div className="flex space-x-1 text-[#a6a6a6] hover:underline">
-          {artistsName}
+          {trackData.artists.map((artist, index) => (
+            <span key={index}>
+              {artist.name}
+              {index < trackData.artists.length - 1 && ", "}
+            </span>
+          ))}
         </div>
         <div>
           <Link to={`/song/${trackLink}`}>
