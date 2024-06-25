@@ -30,6 +30,7 @@ function TrackCard({ trackName }) {
   const albumLink = trackData.album?.external_urls.spotify
   const trackImgUrl = trackData.album?.images[0]?.url
   const albumName = trackData.album.name
+  const trackId = trackData.id
 
   return (
     <div className="bg-[#1a1a1a] flex flex-col justify-center items-center py-10 rounded">
@@ -67,7 +68,7 @@ function TrackCard({ trackName }) {
           ))}
         </div>
         <div>
-          <Link to={`/song/${trackLink}`}>
+          <Link to={`/song/${trackId}`}>
             <span>More</span>
           </Link>
         </div>
