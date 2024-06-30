@@ -8,6 +8,7 @@ import Spotify from "./pages/Spotify";
 import SpotifySongSinglePage from "./pages/SpotifySongSinglePage";
 import { Provider } from "react-redux";
 import store from "./app/store";
+import Blog from "./pages/Blog";
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Blog />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/search" element={<SongSearch />} />
           <Route path="/random-song" element={<FetchSongById />} />
           <Route path="/spotify" element={<Spotify />}/>

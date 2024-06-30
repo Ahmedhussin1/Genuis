@@ -32,31 +32,32 @@ function TrackCard({ trackName }) {
   const trackId = trackData.id;
 
   return (
-    <div className="bg-[#1a1a1a] flex flex-col justify-center items-center py-10 rounded">
+    <div className="bg-[#1a1a1a] min-w-[500px] flex justify-start items-center py-10 rounded">
       {/* track image */}
-      <div className="flex justify-center items-center">
-        <a href={trackLink} target="_blank">
+      <div className="flex max-w-[300px] justify-center items-center">
+        <Link to={trackLink} target="_blank">
           <img className="rounded p-5" src={trackImgUrl} />
-        </a>
+        </Link>
       </div>
       {/* all track data container  */}
-      <div className="flex items-center flex-col gap-3">
+      <div className="flex items-start flex-col gap-3 p-5">
         {/* track name */}
-        <div>
-          <span className="text-2xl font-bold">{trackName}</span>
+        <div className="">
+          <Link to={trackLink} target="_blank">
+            <span className="text-2xl font-bold">{trackName}</span>
+          </Link>
         </div>
         {/* album name */}
         <div>
-          <span className="text-[#a6a6a6]">
-            <a
-              className="hover:underline cursor-pointer"
-              href={albumLink}
-              target="_blank"
-            >
-              Album:
+          <Link
+            className="hover:underline cursor-pointer"
+            to={albumLink}
+            target="_blank"
+          >
+            <span className="text-[#a6a6a6] flex text-start">
               {albumName}
-            </a>
-          </span>
+            </span>
+          </Link>
         </div>
         <div className="flex space-x-1 text-[#a6a6a6] hover:underline">
           {trackData.artists.map((artist, index) => (

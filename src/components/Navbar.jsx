@@ -11,7 +11,14 @@ function Navbar() {
             location.pathname === "/" ? "text-[#ff3533]" : "text-[#ffffff]"
           }`}
         >
-          <Link to="/">Home</Link>
+          <Link to="/">Blog</Link>
+        </li>
+        <li
+          className={`text-xl font-bold ${
+            location.pathname === "/home" ? "text-[#ff3533]" : "text-[#ffffff]"
+          }`}
+        >
+          <Link to="/home">Home</Link>
         </li>
         <li
           className={`text-xl font-bold ${

@@ -15,7 +15,7 @@ function SongCard({
   youtubeUrl,
 }) {
   return (
-    <div className="p-5 bg-[#1a1a1a] w-fit space-y-5 rounded">
+    <div className="p-5 bg-[#1a1a1a] w-fit space-y-5 rounded ">
       <div className="flex items-center justify-center">
         <a target="_blank" href={genuisLink}>
           <img className="rounded" src={imgUrl} />

@@ -5,8 +5,7 @@ import TopTrackChart from "../components/TopTrackChart";
 function Home() {
   return (
     <div>
-      <AddPostForm />
-      <PostList />
+      
     </div>
   );
 }

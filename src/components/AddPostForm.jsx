@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import SearchTrackField from "./SearchTrackField";
 import { addPost } from "../features/posts/postSlice";
+import { FaPlus } from "react-icons/fa";
+
 
 function AddPostForm() {
   const [showPopup, setShowPopup] = useState(false);
@@ -26,15 +28,17 @@ function AddPostForm() {
   };
   return (
     <div>
-      <button
-        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300"
-        onClick={() => setShowPopup(true)}
-      >
-        Your Take?
-      </button>
+      <div className="flex justify-end">
+        <button
+          className="bg-blue-500 text-white px-4 py-4 rounded-full hover:bg-blue-600 transition duration-300"
+          onClick={() => setShowPopup(true)}
+        >
+          <FaPlus />
+        </button>
+      </div>
       {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-8 rounded shadow-lg w-96">
+          <div className="bg-[#353935] p-8 rounded shadow-lg w-96">
             <form onSubmit={handleSubmit}>
               {/* post title */}
               <div className="mb-4">
