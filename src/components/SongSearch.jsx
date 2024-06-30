@@ -1,25 +1,24 @@
-import { useState } from "react"
+import { useState } from "react";
 import { searchSong } from "../services/geniusService";
-import LoadingAnimation from "./LoadingAnimation";
+import LoadingAnimation from "./loading/LoadingAnimation";
 import SongCard from "./SongCard";
 
 function SongSearch() {
-    const [query, setQuery] = useState('')
-    const [result, setResult] = useState([])
-    const [loading, setLoading] = useState(false)
+  const [query, setQuery] = useState("");
+  const [result, setResult] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-    const handleSubmit =async (e) =>{
-        e.preventDefault();
-        setLoading(true)
-        try{
-            const hits = await searchSong(query)
-            setResult(hits)
-            setLoading(false)
-        }catch(error){
-            console.error('Error during search', error)
-
-        }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const hits = await searchSong(query);
+      setResult(hits);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error during search", error);
     }
+  };
 
   return (
     <div className="">
@@ -60,4 +59,4 @@ function SongSearch() {
   );
 }
 
-export default SongSearch
+export default SongSearch;

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import LoadingAnimation from "../components/LoadingAnimation";
+import LoadingAnimation from "../components/loading/LoadingAnimation";
 import { searchSpotify } from "../services/spotifyService";
 import AlbumCard from "../components/AlbumCard";
 import ArtistCard from "../components/ArtistCard";
 import TrackCard from "../components/TrackCard";
-import FullLoadingAnimation from "../components/FullLoadingAnimation";
+import FullLoadingAnimation from "../components/loading/FullLoadingAnimation";
 
 function Spotify() {
   const [query, setQuery] = useState("");

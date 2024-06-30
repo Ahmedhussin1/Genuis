@@ -58,3 +58,12 @@ export const singleSongData = async (id,market="US") => {
     });
     return response.data;
 }
+
+// todo: create a function to fetch users playlist using spotify user_id
+// https://api.spotify.com/v1/users/5crssnb3weeoosx8db817nkqf/playlists
+// music database api 
+// https://www.theaudiodb.com/api_guide.php?ref=public_apis
+// upcoming events for artists api 
+// https://www.songkick.com/developer/upcoming-events
+// musixmatch api 
+//  https://api.musixmatch.com/ws/1.1/

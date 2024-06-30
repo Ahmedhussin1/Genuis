@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { searchSpotify } from "../services/spotifyService";
-import LoadingAnimation from "./LoadingAnimation";
+import LoadingAnimation from "./loading/LoadingAnimation";
 
 function SearchAlbumField({ onAlbumSelect }) {
   const [query, setQuery] = useState("");

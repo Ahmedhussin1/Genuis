@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { singleSongData } from "../services/spotifyService";
-import LoadingAnimation from "../components/LoadingAnimation";
+import LoadingAnimation from "../components/loading/LoadingAnimation";
 import { IoMdArrowRoundBack } from "react-icons/io";
 
 import SongSearch from "../components/SongSearch";
@@ -10,15 +10,15 @@ import Spotify from "./Spotify";
 function SpotifySongSinglePage() {
   const { id } = useParams();
   const navigate = useNavigate();
-//   Todo:try change the value of the useState to array
+  //   Todo:try change the value of the useState to array
   const [song, setSong] = useState(null);
   const [loading, setLoading] = useState(false);
 
-// function to go navigate to spotify when clicking back button
+  // function to go navigate to spotify when clicking back button
   const handleBackButton = () => {
     navigate("/spotify");
   };
-//   fetching track data
+  //   fetching track data
   useEffect(() => {
     const getSongData = async () => {
       setLoading(true);
@@ -35,20 +35,20 @@ function SpotifySongSinglePage() {
     getSongData();
   }, [id]);
 
-//   check if still loading
+  //   check if still loading
   if (loading) {
     return <LoadingAnimation />;
   }
-//   check if still fetching
+  //   check if still fetching
   if (!song) {
     return <LoadingAnimation />;
   }
-//   function to convert from milliseconds to minutes
-const toMilliseconds = (time) =>{
+  //   function to convert from milliseconds to minutes
+  const toMilliseconds = (time) => {
     const minutes = (parseInt(time) / 60000).toFixed(1);
-    const formattedMinutes= minutes.replace('.',':')
+    const formattedMinutes = minutes.replace(".", ":");
     return formattedMinutes;
-} 
+  };
   return (
     <div>
       {/* <Spotify/> */}
@@ -63,10 +63,9 @@ const toMilliseconds = (time) =>{
         <LoadingAnimation />
       ) : (
         <div>
-        <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center">
             <img src={song.album.images[1].url} alt={song.album.name} />
-  
-        </div>
+          </div>
           <h1>{song?.name}</h1>
           {song?.artists?.map((artist, index) => (
             <Link key={index} to={artist.external_urls?.spotify}>

@@ -6,7 +6,7 @@ const ACCESS_TOKEN =
 
 
 const geniusApi = axios.create({
-  baseURL: "/api",
+  baseURL: "/api/genius",
   headers: {
     Authorization: `Bearer ${ACCESS_TOKEN}`,
   },
