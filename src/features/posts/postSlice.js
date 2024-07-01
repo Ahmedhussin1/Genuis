@@ -1,4 +1,4 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit"
+import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState = {
   posts: [
@@ -12,6 +12,7 @@ const initialState = {
     {
       title: "Daft Punk’s synths on this though…",
       text: "This is the perfect opener. He knew that many fans wouldn’t like Yeezus and he is basically saying that he doesn’t give a fuck and this album is gonna be what we need, not what we want.",
+      songName: "on sight",
       rating: 5,
       id: "",
     },
@@ -19,28 +20,28 @@ const initialState = {
 };
 
 const postSlice = createSlice({
-    name:"post",
-    initialState,
-    reducers:{
-        addPost:{
-            reducer(state,action){
-                state.posts.push(action.payload)
-            },
-            prepare({title,text,songName,rating}){
-                return{
-                    payload:{
-                        id: nanoid(),
-                        title,
-                        text,
-                        songName,
-                        rating,
-                        createdAt:new Date().toISOString(),
-                    }
-                }
-            }
-        } 
-    }
-})
+  name: "post",
+  initialState,
+  reducers: {
+    addPost: {
+      reducer(state, action) {
+        state.posts.push(action.payload);
+      },
+      prepare({ title, text, songName, rating }) {
+        return {
+          payload: {
+            id: nanoid(),
+            title,
+            text,
+            songName,
+            rating,
+            createdAt: new Date().toISOString(),
+          },
+        };
+      },
+    },
+  },
+});
 
-export const {addPost} = postSlice.actions;
+export const { addPost } = postSlice.actions;
 export default postSlice.reducer;

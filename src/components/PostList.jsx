@@ -16,7 +16,6 @@ function PostList() {
             <h2 className="text-2xl font-bold ">{post.title}</h2>
             <p className="text-start">{post.text}</p>
             <p>Rating: {post.rating}</p>
-            <p>Song Name: {post.songName}</p>
           </div>
           <div className="flex justify-start items-center">
             <TrackCard trackName={post.songName} />
