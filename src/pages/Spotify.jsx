@@ -5,6 +5,7 @@ import AlbumCard from "../components/AlbumCard";
 import ArtistCard from "../components/ArtistCard";
 import TrackCard from "../components/TrackCard";
 import FullLoadingAnimation from "../components/loading/FullLoadingAnimation";
+import SearchResultTrackCard from "../components/SearchResultTrackCard";
 
 function Spotify() {
   const [query, setQuery] = useState("");
@@ -98,7 +99,9 @@ function Spotify() {
                 </div>
               );
             } else if (type === "track") {
-              return <TrackCard trackName={result.name} key={result.id} />;
+              return (
+                  <SearchResultTrackCard trackName={result.name}  />
+              );
             }
             return null;
           })

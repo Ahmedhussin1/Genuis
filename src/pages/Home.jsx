@@ -1,11 +1,11 @@
-import AddPostForm from "../components/AddPostForm";
-import PostList from "../components/PostList";
-import TopTrackChart from "../components/TopTrackChart";
+import Romance from "../playlists/Romance";
+import MoodPlayLists from "../playlists/MoodPlaylists";
 
 function Home() {
   return (
-    <div>
-      
+    <div className="">
+      <Romance />
+      <MoodPlayLists />
     </div>
   );
 }
