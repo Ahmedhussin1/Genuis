@@ -55,7 +55,7 @@ export const singleSongData = async (id, market = "US") => {
 
 // fetch featured playlists for the homepage
 
-export const getCategoriesPlaylist = async (category_id,limit,offset) => {
+export const getCategoriesPlaylist = async (category_id, limit, offset) => {
   const token = await getAccessToken();
   const response = await axios.get(
     `
@@ -64,15 +64,30 @@ https://api.spotify.com/v1/browse/categories/${category_id}/playlists`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      params:{
-        limit:limit,
-        offset:offset
-      }
+      params: {
+        limit: limit,
+        offset: offset,
+      },
     }
   );
   return response.data.playlists.items;
 };
 
+// get Playlist by id
+
+export const getPlaylist = async (playlist_id) => {
+  const token = await getAccessToken();
+  const response = await axios.get(
+    `https://api.spotify.com/v1/playlists/${playlist_id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  return response.data;
+};
 // todo: create a function to fetch users playlist using spotify user_id
 // https://api.spotify.com/v1/users/5crssnb3weeoosx8db817nkqf/playlists
 // music database api
