@@ -3,7 +3,7 @@ import { login } from "../services/login";
 import { Link, useNavigate } from "react-router-dom";
 
 function LoginPage() {
-  const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
@@ -12,8 +12,11 @@ function LoginPage() {
     if (validate()) {
       console.log("login proccess");
       try {
-        const user = await login(email, password);
+        const user = await login(userName, password);
         console.log("User:", user);
+        sessionStorage.setItem("userName", user.name);
+        sessionStorage.setItem("id", user.id);
+
         navigate("/");
       } catch (err) {
         console.error("Error logining", err);
@@ -25,9 +28,9 @@ function LoginPage() {
   };
   const validate = () => {
     let result = true;
-    if (email === "" || email === null) {
+    if (userName === "" || userName === null) {
       result = false;
-      alert("Email is required");
+      alert("userName is required");
     }
     if (password === "" || password === null) {
       result = false;
@@ -40,11 +43,11 @@ function LoginPage() {
       <h1>Login</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
         <input
-          value={email}
+          value={userName}
           className="py-3 px-5 rounded-2xl"
-          type="email"
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          placeholder="user name"
+          onChange={(e) => setUserName(e.target.value)}
         />
         <input
           value={password}

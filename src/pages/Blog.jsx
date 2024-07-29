@@ -6,6 +6,7 @@ function Blog() {
     <div className='flex flex-col gap-10'>
       <AddPostForm />
       <PostList />
+      <h1></h1>
     </div>
   );
 }

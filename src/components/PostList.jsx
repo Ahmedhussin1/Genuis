@@ -1,8 +1,29 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import TrackCard from "./TrackCard";
+import { useEffect } from "react";
+import { fetchPostsByUser } from "../features/posts/postSlice";
 
 function PostList() {
   const posts = useSelector((state) => state.post.posts);
+  const status = useSelector((state) => state.post.status);
+  const error = useSelector((state) => state.post.error);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const id = sessionStorage.getItem("id");
+    if (id) {
+      dispatch(fetchPostsByUser(id));
+    }
+  }, [dispatch]);
+
+   if (status === "loading") {
+     return <div>Loading...</div>;
+   }
+
+   if (status === "failed") {
+     return <div>Error: {error}</div>;
+   }
+
   console.log("song name :" + posts.songName);
 
   return (
@@ -14,6 +35,7 @@ function PostList() {
         >
           <div className="flex flex-col items-start gap-2">
             <h2 className="text-2xl font-bold ">{post.title}</h2>
+            <p>@{post.userName}</p>
             <p className="text-start">{post.text}</p>
             <p>Rating: {post.rating}</p>
           </div>

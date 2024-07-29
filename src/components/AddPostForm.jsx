@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import SearchTrackField from "./SearchTrackField";
-import { addPost } from "../features/posts/postSlice";
+import { addPosts } from "../features/posts/postSlice";
 import { FaPlus } from "react-icons/fa";
-
+import { nanoid } from "@reduxjs/toolkit";
 
 function AddPostForm() {
   const [showPopup, setShowPopup] = useState(false);
@@ -13,15 +13,36 @@ function AddPostForm() {
   const [songName, setSongName] = useState("");
 
   const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addPost({ title, text, songName, rating }));
-    console.log("title:"+title,"text:"+ text,"rating:"+ rating,"song name:"+songName);
-    setShowPopup(false);
-    setTitle("");
-    setText("");
-    setRating(0);
-    setSongName("");
+    const userId = sessionStorage.getItem("id");
+    const userName = sessionStorage.getItem("userName");
+    if (userId) {
+      const newPost = {
+        id: nanoid(),
+        userId: userId,
+        title,
+        text,
+        songName,
+        rating,
+        userName
+      };
+      dispatch(addPosts(newPost));
+      console.log(
+        "title:" + title,
+        "text:" + text,
+        "rating:" + rating,
+        "song name:" + songName
+      );
+      setShowPopup(false);
+      setTitle("");
+      setText("");
+      setRating(0);
+      setSongName("");
+    }else{
+      alert("Please log in to add a post.");
+    }
   };
   const handleSelectedSong = (song) => {
     setSongName(song);

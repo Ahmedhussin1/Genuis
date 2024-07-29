@@ -4,7 +4,7 @@ import LoadingAnimation from "../components/loading/LoadingAnimation";
 import { useNavigate } from "react-router-dom";
 
 function SignUp() {
-  const [name, setName] = useState("");
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
@@ -17,7 +17,7 @@ function SignUp() {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!name) newErrors.name = "Full name is required";
+    if (!userName) newErrors.userName = "Full userName is required";
     if (!email) newErrors.email = "Email is required";
     if (!password) newErrors.password = "Password is required";
     if (!phone) newErrors.phone = "Phone number is required";
@@ -32,7 +32,7 @@ function SignUp() {
     if (!validateForm()) return;
     setLoading(true);
     try {
-      await signUp(name, email, password, phone, age, city);
+      await signUp(userName, email, password, phone, age, city);
       navigate("/log-in");
     } catch (error) {
       console.error("Error signing up", error);
@@ -50,9 +50,9 @@ function SignUp() {
       >
         <input
           type="text"
-          value={name}
+          value={userName}
           required
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setUserName(e.target.value)}
           placeholder="Full Name"
           className="py-3 px-5 rounded-2xl"
         />

@@ -2,10 +2,10 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:8000/users";
 
-export const signUp = async (name, email, password, phone, age, city) => {
+export const signUp = async (userName, email, password, phone, age, city) => {
   try {
     const payload = {
-      name: name,
+      name: userName,
       email: email,
       password: password,
       phone: phone,
@@ -20,10 +20,10 @@ export const signUp = async (name, email, password, phone, age, city) => {
   }
 };
 
-export const login = async (email, password) => {
+export const login = async (userName, password) => {
   try {
     const response = await axios.get(
-      `${BASE_URL}?email=${email}&password=${password}`
+      `${BASE_URL}?name=${userName}&password=${password}`
     );
     if (response.data.length > 0) {
       return response.data[0];
