@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { searchSpotify } from "../services/spotifyService";
-import LoadingAnimation from "./loading/LoadingAnimation";
 import MultiRowLoading from "./loading/MultiRowLoading";
 
 function TrackCard({ trackName }) {

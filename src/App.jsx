@@ -9,6 +9,8 @@ import SpotifySongSinglePage from "./pages/SpotifySongSinglePage";
 import { Provider } from "react-redux";
 import store from "./app/store";
 import Blog from "./pages/Blog";
+import SignUp from "./pages/SignUp";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
@@ -20,8 +22,10 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/search" element={<SongSearch />} />
           <Route path="/random-song" element={<FetchSongById />} />
-          <Route path="/spotify" element={<Spotify />}/>
+          <Route path="/spotify" element={<Spotify />} />
           <Route path="/song/:id" element={<SpotifySongSinglePage />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/log-in" element={<LoginPage />} />
         </Routes>
       </Router>
     </Provider>

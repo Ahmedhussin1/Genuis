@@ -3,8 +3,6 @@ import LoadingAnimation from "../components/loading/LoadingAnimation";
 import { searchSpotify } from "../services/spotifyService";
 import AlbumCard from "../components/AlbumCard";
 import ArtistCard from "../components/ArtistCard";
-import TrackCard from "../components/TrackCard";
-import FullLoadingAnimation from "../components/loading/FullLoadingAnimation";
 import SearchResultTrackCard from "../components/SearchResultTrackCard";
 
 function Spotify() {
@@ -100,7 +98,10 @@ function Spotify() {
               );
             } else if (type === "track") {
               return (
-                  <SearchResultTrackCard trackName={result.name}  />
+                <SearchResultTrackCard
+                  key={result.id}
+                  trackName={result.name}
+                />
               );
             }
             return null;
