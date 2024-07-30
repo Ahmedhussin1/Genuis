@@ -50,6 +50,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const BASE_URL = "http://localhost:8000/posts";
+
+// fetching posts using user id
 export const fetchPostsByUser = createAsyncThunk(
   "posts/fetchPostByUser",
   async (userId) => {
@@ -58,10 +60,18 @@ export const fetchPostsByUser = createAsyncThunk(
   }
 );
 
+//adding posts 
 export const addPosts = createAsyncThunk("posts/addPost", async (newPost) => {
   const response = await axios.post(BASE_URL, newPost);
   return response.data;
 });
+
+//delete posts 
+
+export const deletePost = createAsyncThunk("posts/deletePost",async (postId)=>{
+  await axios.delete(`${BASE_URL}/${postId}`)
+  return postId
+})
 
 const initialState = {
   posts: [],
@@ -88,7 +98,10 @@ const postSlice = createSlice({
       })
       .addCase(addPosts.fulfilled, (state, action) => {
         state.posts.push(action.payload);
-      });
+      })
+      .addCase(deletePost.fulfilled,(state,action)=>{
+        state.posts = state.posts.filter(post => post.id !== action.payload)
+      })
   },
 });
 

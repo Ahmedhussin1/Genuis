@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import TrackCard from "./TrackCard";
 import { useEffect } from "react";
-import { fetchPostsByUser } from "../features/posts/postSlice";
+import { deletePost, fetchPostsByUser } from "../features/posts/postSlice";
 
 function PostList() {
   const posts = useSelector((state) => state.post.posts);
@@ -24,6 +24,10 @@ function PostList() {
      return <div>Error: {error}</div>;
    }
 
+   const handleDeleteButtonClick = (id) =>{
+      dispatch(deletePost(id));
+   }
+
   console.log("song name :" + posts.songName);
 
   return (
@@ -41,6 +45,14 @@ function PostList() {
           </div>
           <div className="flex justify-start items-center">
             <TrackCard trackName={post.songName} />
+          </div>
+          <div>
+            <button
+              className="bg-red-500 text-white px-3 py-1 rounded"
+              onClick={() => handleDeleteButtonClick(post.id)}
+            >
+              delete
+            </button>
           </div>
         </div>
       ))}
