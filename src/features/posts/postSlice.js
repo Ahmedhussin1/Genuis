@@ -51,6 +51,13 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:8000/posts";
 
+// fetching all posts
+
+export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
+  const response = await axios.get(BASE_URL);
+  return response.data;
+});
+
 // fetching posts using user id
 export const fetchPostsByUser = createAsyncThunk(
   "posts/fetchPostByUser",
@@ -60,18 +67,21 @@ export const fetchPostsByUser = createAsyncThunk(
   }
 );
 
-//adding posts 
+//adding posts
 export const addPosts = createAsyncThunk("posts/addPost", async (newPost) => {
   const response = await axios.post(BASE_URL, newPost);
   return response.data;
 });
 
-//delete posts 
+//delete posts
 
-export const deletePost = createAsyncThunk("posts/deletePost",async (postId)=>{
-  await axios.delete(`${BASE_URL}/${postId}`)
-  return postId
-})
+export const deletePost = createAsyncThunk(
+  "posts/deletePost",
+  async (postId,userId) => {
+    await axios.delete(`${BASE_URL}/${postId}`);
+    return postId;
+  }
+);
 
 const initialState = {
   posts: [],
@@ -85,6 +95,17 @@ const postSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(fetchPosts.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchPosts.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.posts = action.payload;
+      })
+      .addCase(fetchPosts.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
       .addCase(fetchPostsByUser.pending, (state) => {
         state.status = "loading";
       })
@@ -99,9 +120,9 @@ const postSlice = createSlice({
       .addCase(addPosts.fulfilled, (state, action) => {
         state.posts.push(action.payload);
       })
-      .addCase(deletePost.fulfilled,(state,action)=>{
-        state.posts = state.posts.filter(post => post.id !== action.payload)
-      })
+      .addCase(deletePost.fulfilled, (state, action) => {
+        state.posts = state.posts.filter((post) => post.id !== action.payload);
+      });
   },
 });
 
