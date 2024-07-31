@@ -31,17 +31,17 @@ function SearchResultTrackCard({ trackName }) {
   const trackId = trackData.id;
 
   return (
-    <div className="p-5 bg-[#1a1a1a] w-fit space-y-5 rounded">
+    <div className="p-5 bg-[#1a1a1a] w-fit space-y-2 rounded xl:space-y-5">
       {/* track image */}
-      <div className="flex min-w-[300px] justify-center items-center">
+      <div className="flex sm:max-w-[300px] justify-center items-center xl:min-w-[300px]">
         <Link to={trackLink} target="_blank">
-          <img className="rounded p-5" src={trackImgUrl} />
+          <img className="rounded w-full sm:w-auto xl:p-5" src={trackImgUrl} />
         </Link>
       </div>
       {/* all track data container  */}
-      <div className="flex items-start flex-col gap-3 p-5">
+      <div className="flex items-start flex-col xl:gap-3 xl:p-5 ">
         {/* track name */}
-        <div className="">
+        <div className="text-center sm:text-left">
           <Link to={trackLink} target="_blank">
             <span className="text-2xl font-bold">{trackName}</span>
           </Link>
@@ -56,7 +56,7 @@ function SearchResultTrackCard({ trackName }) {
             <span className="text-[#a6a6a6] flex text-start">{albumName}</span>
           </Link>
         </div>
-        <div className="flex space-x-1 text-[#a6a6a6] hover:underline">
+        <div className="flex flex-wrap xl:justify-center justify-start space-x-1 text-[#a6a6a6]  hover:underline">
           {trackData.artists.map((artist, index) => (
             <span key={index}>
               <a target="_blank" href={artist.external_urls.spotify}>

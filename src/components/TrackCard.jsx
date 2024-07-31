@@ -31,7 +31,7 @@ function TrackCard({ trackName }) {
   const trackId = trackData.id;
 
   return (
-    <div className="bg-[#1a1a1a] min-w-[500px] flex justify-start items-center py-10 rounded">
+    <div className="bg-[#1a1a1a] min-w-[300px] flex justify-start items-center py-10 rounded md: lg: xl:min-w-[500px]">
       {/* track image */}
       <div className="flex max-w-[300px] justify-center items-center">
         <Link to={trackLink} target="_blank">
@@ -53,9 +53,7 @@ function TrackCard({ trackName }) {
             to={albumLink}
             target="_blank"
           >
-            <span className="text-[#a6a6a6] flex text-start">
-              {albumName}
-            </span>
+            <span className="text-[#a6a6a6] flex text-start">{albumName}</span>
           </Link>
         </div>
         <div className="flex space-x-1 text-[#a6a6a6] hover:underline">

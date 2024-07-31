@@ -16,7 +16,7 @@ function PlayListCard({ loading, results,title }) {
           </div>
         )}
       </div>
-      <div className="grid grid-cols-5 gap-5">
+      <div className="grid grid-cols-2 gap-5 xl:grid-cols-5">
         {!loading &&
           results.map((item, index) => (
             <div

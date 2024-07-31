@@ -41,7 +41,7 @@ function PostList() {
   console.log("song name :" + posts.songName);
 
   return (
-    <div className="grid grid-cols-2 gap-10">
+    <div className="grid grid-cols-1 gap-10 xl:grid-cols-2">
       {alert && (
         <div className="fixed bottom-5 right-5 z-50">
           <Alert severity="error" onClose={() => setAlert(false)}>
@@ -51,7 +51,7 @@ function PostList() {
       )}
       {posts.map((post) => (
         <div
-          className="bg-[black] min-w-[500px] p-5 rounded flex flex-col justify-between gap-3"
+          className="bg-[black] min-w-[300px] p-5 rounded flex flex-col justify-center gap-3 xl:justify-between xl:min-w-[500px]"
           key={post.id}
         >
           <div className="flex flex-col items-start gap-2">

@@ -33,8 +33,13 @@ function Spotify() {
       setLoading(false);
     }
   };
+  const handleSelectCategory = (e) => {
+    setQuery("");
+    setResults([]);
+    setType(e.target.value);
+  };
   return (
-    <div className="">
+    <div className="flex flex-col gap-5">
       <h1>Spotify search</h1>
       <form className="space-x-5" onSubmit={handleSearch}>
         <input
@@ -45,7 +50,7 @@ function Spotify() {
           className="py-2 px-3 rounded"
         />
 
-        <select value={type} onChange={(e) => setType(e.target.value)}>
+        <select value={type} onChange={(e) => handleSelectCategory(e)}>
           <option value="album">Album</option>
           <option value="artist">Artist</option>
           <option value="track">Track</option>
@@ -53,7 +58,7 @@ function Spotify() {
 
         <button type="submit">Search</button>
       </form>
-      <div className="grid grid-cols-3 py-10 gap-10">
+      <div className="grid grid-cols-2 py-10 gap-10 xl:grid-cols-3">
         {loading ? (
           <div className="col-span-3 flex justify-center items-center mt-10">
             {/* <FullLoadingAnimation backgroundColor='white' height='450' imgUrl='../../public/Because we are disturbed that the art of the mixtape has in fact been lost on a generation_.gif' /> */}
