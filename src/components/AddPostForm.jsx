@@ -63,7 +63,7 @@ function AddPostForm() {
       {alert && (
         <div className="fixed bottom-5 right-5 z-50">
           <Alert severity="error" onClose={() => setAlert(false)}>
-            You need to be logged in to delete a post.
+            You need to be logged in to add a post.
           </Alert>
         </div>
       )}
